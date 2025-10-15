@@ -1,25 +1,20 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NoImplicitPrelude #-}
 
 module Main where
 
 import Prelude (IO, putStrLn)
 import PlutusTx (compile)
-import PlutusTx.Code (CompiledCode)
-import PlutusTx.Prelude
+import PlutusTx.Prelude (BuiltinData, ())
 
--- A simple validator that always succeeds
+-- | A simple validator that always succeeds
 {-# INLINABLE mkSimpleValidator #-}
 mkSimpleValidator :: BuiltinData -> BuiltinData -> BuiltinData -> ()
 mkSimpleValidator _ _ _ = ()
 
--- Compile the validator to Plutus Core
-validatorCompiled :: CompiledCode (BuiltinData -> BuiltinData -> BuiltinData -> ())
+-- | Compile the validator to Plutus Core
 validatorCompiled = $$(compile [|| mkSimpleValidator ||])
 
+-- | Main entry point
 main :: IO ()
-main = putStrLn "Simple DeFi validator compiled successfully!"
+main = putStrLn "Simple validator compiled successfully."
