@@ -92,3 +92,4 @@ Plinth currently supports GHC `v9.6.x`. Cabal `v3.8+` is recommended.
 ### 3. Run the example application
 
 Run `cabal update` first, then read [Example: An Auction Smart Contract](https://plutus.cardano.intersectmbo.org/docs/category/example-an-auction-smart-contract) to get started.
+*Developer: Ajayi Michael*
